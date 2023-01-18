@@ -1,0 +1,11 @@
+<nav class="bg-grey-light rounded-md w-full">
+    <ol class="list-reset flex">
+      <%for(var i = 0;i<data.length;i++){%>
+        <li class="text-lg "><a href="<%=data[i].url%>" class=<%=data[i].current? "text-gray-600 " : "text-blue-600 hover:text-blue-700 "%>><%=data[i].label%></a></li>
+      <li><span class="text-gray-500 mx-2">&#62;</span></li>
+      
+        <%}%>
+      
+    </ol>
+   
+  </nav>

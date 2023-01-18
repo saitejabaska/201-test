@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+    <title><%=title%></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+      function updateElection(id){
+         // let compelete = false
+          fetch(`/elections/${id}/launch`,{
+              method:'put',
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify({
+                  _csrf:token
+              })
+          }).then((res)=>{
+              if(res.ok){
+                  window.location.reload();
+              }
+          }).catch((err)=>console.log(err))
+      }
+      console.log(window.location.pathname)
+      </script>
+      <style>
+        body{
+  font-family: 'Jost', sans-serif;
+
+}
+      </style>
+  </head>
+  <body>
+    <main class=" h-screen" style="background-color: #f3f3f6fd; ">
+      <%-include('header.ejs',{admin:admin})%>
+        <div class="  sm:container mx-auto p-10 bg-white shadow-lg rounded-md "
+          style=" margin: 30px auto; height: 75%; width: 65%;">
+          <div class="mx-auto mt-5" style="width: max-content;">
+          <%
+          var data=[
+    {label:"Home",url:"/elections",current:false},
+    {label:`${election.title}`,url:`/elections/${election.id}`,current:true}
+    ]%>
+          <%- include('navigation.ejs',{data:data})%>
+      <div >
+        <h1 class="text-3xl font-bold text-gray-600 pb-5 text-center"><%=election.title%></h1>
+
+       <div>
+        <% if(election.status=="launched"){%>
+          <p class="text-lg text-gray-500 ">This election has launched and voters can access this URL</p>
+        <a href="/elections/<%=election.id%>/vote" class="text-blue-600 underline text-lg">https://online-election.onrender.com/elections/<%=election.id%>/vote</a>
+          <%}%>
+       <% if(questions.length==0){%>
+          <p class="text-lg text-gray-500 ">You haven't created any questions</p>
+        <%}%>
+        <% if(questions.length > 0){%>
+          <p class="text-lg text-gray-500 ">Your election has <%=questions.length%> questions in the ballot</p>
+          <%}%>
+       </div>
+      
+      <%if(election.status == "created"){%>
+       <a href="/elections/<%=election.id%>/questions" class="text-green-500 block text-lg font-normal">Manage questions</a>
+      <%}%>
+       <div>
+        <% if(voters.length==0){%>
+           <p class="text-lg text-gray-500 ">You haven't created any voters</p>
+         <%}%>
+         <% if(voters.length > 0){%>
+           <p class="text-lg text-gray-500 ">Your election has <%=voters.length%> registered voters</p>
+           <%}%>
+        </div>
+       <a href="/elections/<%=election.id%>/voters" class="text-green-500 block text-lg font-normal">Manage Voters</a>
+       <%if(election.status == "created"){%>
+        <a href=""onclick="updateElection('<%=election.id%>')" class="text-green-500 block text-lg font-normal">Launch election</a>
+        <%}%>
+        <%if(election.status == "launched"){%>
+          <a href="/preview" class="text-green-500 block text-lg font-normal">Preview Results</a>
+          <a href="/end" class="text-green-500 block text-lg font-normal">End election</a>
+
+          <%}%>
+
+      </div>
+    </div>
+    </div>
+    </main>
+
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+    <title><%=title%></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="grid grid-cols-6 pt-5 mt-5">
+        <div class="col-start-2 col-span-2">
+          <%
+          var data=[
+    {label:"Home",url:"/elections",current:false},
+    {label:`${election.title}`,url:`/elections/${election.id}`,current:false},
+    {label:`Questions`,url:`/elections/${election.id}/questions`,current:true},
+
+    ]
+          %>
+          <%- include('navigation.ejs',{data:data})%>
+
+            <h1 class="text-2xl font-semibold text-gray-600"><%=election.title%></h1>
+            <div>
+              <% if(questions.length==0){%>
+                 <p>You haven't created any questions</p>
+               <%}%>
+               <% if(questions.length > 0){%>
+                 <p>Your election has <%=questions.length%> questions in the ballot</p>
+                 <%}%>
+              </div>  
+              <ul class=" list-disc">
+                <%for(var i=0;i<questions.length;i++){%>
+                 <li class="ml-8"><a href="/questions/<%=questions[i].id%>" class="text-blue-600 block"><%=questions[i].title%></a></li> 
+                  <%}%>
+               </ul class="">
+                  <div>
+        <a href="/elections/<%=election.id%>/questions/new" class="text-green-600">Create questions</a>
+
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
+

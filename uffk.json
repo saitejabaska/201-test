@@ -1,0 +1,91 @@
+[
+    [
+        {
+            "id": 25,
+            "content": "Frehiwot",
+            "createdAt": "2023-01-17T13:03:49.995Z",
+            "updatedAt": "2023-01-17T13:03:49.995Z",
+            "adminId": 19,
+            "questionId": 23,
+            "Question": {
+                "id": 23,
+                "title": "Who should be the re of this class?",
+                "description": "Please choose the representative of this class",
+                "createdAt": "2023-01-17T13:03:42.439Z",
+                "updatedAt": "2023-01-17T13:03:42.439Z",
+                "adminId": 19,
+                "electionId": 25
+            }
+        },
+        {
+            "id": 26,
+            "content": "Meti",
+            "createdAt": "2023-01-17T13:03:53.576Z",
+            "updatedAt": "2023-01-17T13:03:53.576Z",
+            "adminId": 19,
+            "questionId": 23,
+            "Question": {
+                "id": 23,
+                "title": "Who should be the re of this class?",
+                "description": "Please choose the representative of this class",
+                "createdAt": "2023-01-17T13:03:42.439Z",
+                "updatedAt": "2023-01-17T13:03:42.439Z",
+                "adminId": 19,
+                "electionId": 25
+            }
+        },
+        {
+            "id": 27,
+            "content": "Leul",
+            "createdAt": "2023-01-17T13:03:56.436Z",
+            "updatedAt": "2023-01-17T13:03:56.436Z",
+            "adminId": 19,
+            "questionId": 23,
+            "Question": {
+                "id": 23,
+                "title": "Who should be the re of this class?",
+                "description": "Please choose the representative of this class",
+                "createdAt": "2023-01-17T13:03:42.439Z",
+                "updatedAt": "2023-01-17T13:03:42.439Z",
+                "adminId": 19,
+                "electionId": 25
+            }
+        }
+    ],
+    [
+        {
+            "id": 28,
+            "content": "modi",
+            "createdAt": "2023-01-17T13:04:43.589Z",
+            "updatedAt": "2023-01-17T13:04:43.589Z",
+            "adminId": 19,
+            "questionId": 24,
+            "Question": {
+                "id": 24,
+                "title": "Who should take control of the cantean",
+                "description": "choose cantean manager",
+                "createdAt": "2023-01-17T13:04:39.369Z",
+                "updatedAt": "2023-01-17T13:04:39.369Z",
+                "adminId": 19,
+                "electionId": 25
+            }
+        },
+        {
+            "id": 29,
+            "content": "mahadi",
+            "createdAt": "2023-01-17T13:04:49.453Z",
+            "updatedAt": "2023-01-17T13:04:49.453Z",
+            "adminId": 19,
+            "questionId": 24,
+            "Question": {
+                "id": 24,
+                "title": "Who should take control of the cantean",
+                "description": "choose cantean manager",
+                "createdAt": "2023-01-17T13:04:39.369Z",
+                "updatedAt": "2023-01-17T13:04:39.369Z",
+                "adminId": 19,
+                "electionId": 25
+            }
+        }
+    ]
+]

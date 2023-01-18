@@ -1,0 +1,33 @@
+[{
+    "id": 23,
+    "content": "oipoip",
+    "createdAt": "2023-01-16T16:55:28.442Z",
+    "updatedAt": "2023-01-16T16:55:28.442Z",
+    "adminId": 19,
+    "questionId": 21,
+    "Question": {
+        "id": 21,
+        "title": "io",
+        "description": "ioioiio",
+        "createdAt": "2023-01-16T16:55:21.454Z",
+        "updatedAt": "2023-01-16T16:55:21.454Z",
+        "adminId": 19,
+        "electionId": 24
+    }
+},{
+    "id": 24,
+    "content": "car",
+    "createdAt": "2023-01-16T18:48:17.486Z",
+    "updatedAt": "2023-01-16T18:48:17.486Z",
+    "adminId": 19,
+    "questionId": 22,
+    "Question": {
+        "id": 22,
+        "title": "dog",
+        "description": "carrrr",
+        "createdAt": "2023-01-16T18:48:12.515Z",
+        "updatedAt": "2023-01-16T18:48:12.515Z",
+        "adminId": 19,
+        "electionId": 24
+    }
+}]

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="<%= csrfToken %>" />
+  <title>
+    <%=title%>
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <main class=" h-screen" style="background-color: #f3f3f6fd; ">
+    <%-include('header.ejs',{admin:admin})%>
+      <div class="  sm:container mx-auto p-10 bg-white shadow-lg rounded-md "
+        style=" margin: 30px auto; height: 75%; width: 65%;">
+        <div class="mx-auto">
+          <% var data=[ {label:"Home",url:"/elections",current:false},
+            {label:`${election.title}`,url:`/elections/${election.id}`,current:false}, {label:`New
+            Question`,url:`/elections/${election.id}/questions/new`,current:true}, ] %>
+            <%- include('navigation.ejs',{data:data})%>
+              <div class="p-8 mx-auto flex flex-col align-center justify-center" style="width: 500px;">
+
+                <h1 class="text-gray-600 text-2xl font-semibold text-center">Create new Question</h1>
+                <form method="post" action="/questions/createQuestion">
+                  <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+                  <input type="hidden" name="electionId" value="<%=election.id%>" />
+                  <div class="p-3">
+                    <label for="title" class="text-gray-600 text-lg py-2">What's the title of the question?</label>
+                    <input type="text" name="title" class="border border-gray-300 text-gray-900 rounded p-2 w-full mt-2" />
+                  </div>
+                  <div class="p-3">
+                    <label for="description" class="text-gray-600 text-lg py-2">What's the description of the
+                      question?</label>
+                    <input type="text" name="description"
+                      class="border border-gray-300 text-gray-900 rounded p-2 w-full mt-2" />
+                  </div>
+                  <div class="p-3">
+                    <button type="submit"
+                      class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2 w-full">Submit</button>
+                  </div>
+                </form>
+                <%-include("errorMsg.ejs")%>
+
+              </div>
+        </div>
+      </div>
+  </main>
+</body>
+
+</html>

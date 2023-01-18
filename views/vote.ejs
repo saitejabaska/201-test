@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="<%= csrfToken %>" />
+  <title>
+    <%=title%>
+  </title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+    function updateElection(id) {
+      // let compelete = false
+      fetch(`/elections/${id}/launch`, {
+        method: 'put',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          _csrf: token
+        })
+      }).then((res) => {
+        if (res.ok) {
+          window.location.reload();
+        }
+      }).catch((err) => console.log(err))
+    }
+    console.log(window.location.pathname)
+  </script>
+</head>
+
+<body>
+  <main class=" h-screen" style="background-color: #f3f3f6fd; ">
+    <%-include('header.ejs',{admin:null})%>
+      <div class="  sm:container mx-auto p-10 bg-white shadow-lg rounded-md "
+        style=" margin: 30px auto; height: 75%; width: 65%;">
+        <div class="mx-auto p-6">
+          <h1 class="text-3xl font-semibold text-gray-600">
+            <%=election.title%>
+          </h1>
+          <% if(groupedByQuestion.length>0){%>
+            <form action="/elections/<%=election.id%>/vote/analyze" method="post">
+              <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+              <input type="hidden" name="electionId" value="<%=election.id%>" />
+
+              <%for(var i=0; i<groupedByQuestion.length;i++){%>
+                <div>
+                  <p><span>
+                      <%=i+1 %>
+                    </span>
+                    <%=groupedByQuestion[i].title%>
+                  </p>
+                </div>
+                <div>
+                  <%for(var l=0; l< groupedByQuestion[i].answers.length;l++) {%>
+                    <input type="radio" name='<%=groupedByQuestion[i].id%>'
+                      value='<%=groupedByQuestion[i].answers[l]["id"]%>'>
+                    <label for='<%=groupedByQuestion[i].id%>'>
+                      <%=groupedByQuestion[i].answers[l]["content"]%>
+                    </label>
+                    <% }%>
+                      <%}%>
+                </div>
+
+                <button type="submit" class="bg-green-600 py-2 px-3 text-white">Vote</button>
+            </form>
+            <% }%>
+              <%if(groupedByQuestion.length ==0){%>
+                <p>You have voted</p>
+                <%}%>
+        </div>
+      </div>
+      </div>
+  </main>
+
+</body>
+
+</html>
